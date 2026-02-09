@@ -1,6 +1,6 @@
-name: Music Assistant
+name: Music Assistant + 24six
 version: 2.7.6
-slug: music_assistant
+slug: music_assistant_24six
 description:
   The Music Assistant server is a free, opensource Media library manager
   that connects to your streaming services and a wide range of connected speakers.
