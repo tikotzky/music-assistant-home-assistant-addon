@@ -1,0 +1,23 @@
+{
+    "addon_folder": "music_assistant",
+    "addon": {
+        "name": "Music Assistant (24six)",
+        "slug": "music_assistant_24six",
+        "panel_title": "Music Assistant (24six)",
+        "image": "ghcr.io/tikotzky/server"
+    },
+    "repository": {
+        "name": "Music Assistant (24six)",
+        "url": "https://github.com/tikotzky/music-assistant-home-assistant-addon",
+        "maintainer": "tikotzky"
+    },
+    "upstream_repository_url": "https://github.com/music-assistant/home-assistant-addon",
+    "server_repository_url": "https://github.com/tikotzky/music-assistant-server",
+    "dropped_folders": [
+        "local_audio",
+        "music_assistant_beta",
+        "music_assistant_dev",
+        "music_assistant_nightly",
+        "ytm_po_token_generator"
+    ]
+}

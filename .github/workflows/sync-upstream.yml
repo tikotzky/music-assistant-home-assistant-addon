@@ -1,0 +1,47 @@
+name: Sync with upstream
+
+# Pulls the upstream add-on repository into this fork and re-applies the 24six overlay
+# (24six/overlay.json) on top, so upstream changes flow in without merge conflicts while
+# the add-on keeps its 24six identity and version. The version itself is bumped by the
+# "24six Release" workflow in the server repository, because it names a container image
+# that only exists once that release has been built.
+
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-upstream
+  cancel-in-progress: false
+
+env:
+  UPSTREAM_REPOSITORY: music-assistant/home-assistant-addon
+  UPSTREAM_BRANCH: main
+
+jobs:
+  sync:
+    name: Merge upstream and re-apply the 24six overlay
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the fork
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 0
+
+      - name: Fetch upstream
+        run: |
+          git remote add upstream "https://github.com/$UPSTREAM_REPOSITORY.git"
+          git fetch --quiet upstream "$UPSTREAM_BRANCH"
+
+      - name: Sync
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          24six/sync_upstream.sh "upstream/$UPSTREAM_BRANCH"
+
+      - name: Push
+        run: git push origin HEAD
