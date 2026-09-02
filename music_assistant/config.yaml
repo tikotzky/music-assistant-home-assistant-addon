@@ -15,7 +15,8 @@ auth_api: true
 host_network: true
 ingress: true
 ingress_port: 8094
-panel_icon: mdi:bookshelf
+audio: true
+panel_icon: mdi:music-assistant
 panel_title: Music Assistant (24six)
 panel_admin: false
 uart: false
@@ -24,7 +25,6 @@ map:
   - media:rw
   - ssl:ro
 init: false
-advanced: false
 backup_exclude:
   - cache.db
   - collage_images/*
